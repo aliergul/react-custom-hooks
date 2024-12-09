@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 
 export function useFocusWithin() {
   const [focused, setFocused] = useState(false);
-  const ref = useRef();
+  const focusRef = useRef();
 
   useEffect(() => {
-    const element = ref.current;
+    const element = focusRef.current;
     if (element) {
       const handleFocusIn = () => {
         setFocused(true);
@@ -26,7 +26,7 @@ export function useFocusWithin() {
         element.removeEventListener("focusout", handleFocusOut);
       };
     }
-  }, [ref]);
+  }, [focusRef]);
 
-  return { ref, focused };
+  return { focusRef, focused };
 }

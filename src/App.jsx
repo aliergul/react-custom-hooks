@@ -3,16 +3,18 @@ import { useClickOutside } from "./hooks/use-click-outside";
 import { useColorScheme } from "./hooks/use-color-scheme";
 import { useFocusWithin } from "./hooks/use-focus-within";
 import "./App.css";
+import { useFullScreen } from "./hooks/use-full-screen";
 
 function App() {
   const [open, setOpen] = useState(false);
 
   const clickRef = useClickOutside(() => setOpen(false));
   const colorScheme = useColorScheme();
-  const focusObject = useFocusWithin();
+  const { focused, focusRef } = useFocusWithin();
+  const { fullScreenRef, toggle, fullScreen } = useFullScreen();
 
   return (
-    <div style={{ width: 400 }}>
+    <div ref={fullScreenRef} className={fullScreen && "fullscreen"}>
       <div id="click test">
         <h1>React Hooks</h1>
         <button
@@ -23,6 +25,9 @@ function App() {
         >
           {open ? "Close" : "Open"}
         </button>
+        <button onClick={toggle} style={{ marginLeft: 5 }}>
+          {fullScreen ? "Close" : "Open"} FullScreen
+        </button>
       </div>
 
       <p>Test</p>
@@ -32,13 +37,14 @@ function App() {
           display: "flex",
           flexDirection: "column",
           marginBottom: "20px",
-          border: "1px solid #ffffff",
+          border: "1px solid #FD7979FF",
           padding: 30,
           height: 60,
           alignItems: "center",
           justifyContent: "center",
         }}
         ref={clickRef}
+        className={fullScreen && "fullscreen"}
       >
         {open && (
           <div style={{ border: "1px solid #0A07B6FF", padding: 20 }}>
@@ -51,9 +57,10 @@ function App() {
           display: "flex",
           flexDirection: "column",
           marginBottom: "20px",
-          border: "1px solid #ffffff",
+          border: "1px solid #FD7979FF",
           padding: 30,
         }}
+        className={fullScreen && "fullscreen"}
       >
         <p
           style={{ textTransform: "capitalize", border: "1px solid #0A07B6FF" }}
@@ -68,13 +75,12 @@ function App() {
           border: "1px solid #CEDB0DFF",
           padding: 10,
         }}
+        className={fullScreen && "fullscreen"}
       >
         <h3>Focus Within Input</h3>
 
-        <span>
-          {focusObject.focused ? "Focus-Within" : "There Is No Focus!"}
-        </span>
-        <input ref={focusObject.ref} />
+        <span>{focused ? "Focus-Within" : "There Is No Focus!"}</span>
+        <input ref={focusRef} />
       </div>
     </div>
   );
