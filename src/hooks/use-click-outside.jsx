@@ -4,8 +4,9 @@ export function useClickOutside(callbackFunc) {
   const ref = useRef();
 
   useEffect(() => {
+    const element = ref.current;
     const handleClick = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (element && !element.contains(e.target)) {
         callbackFunc();
       }
     };
