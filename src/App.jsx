@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import { useClickOutside } from "./hooks/use-click-outside";
+import { useColorScheme } from "./hooks/use-color-scheme";
 
 function App() {
   const [open, setOpen] = useState(false);
 
+  const colorScheme = useColorScheme();
   const ref = useClickOutside(() => setOpen(false));
   return (
     <>
@@ -23,8 +25,12 @@ function App() {
       <p>Test</p>
 
       {open && (
-        <div style={{ border: "1px solid blue" }} ref={ref}>
-          Controlling here.
+        <div
+          style={{ border: "1px solid blue", flexDirection: "column" }}
+          ref={ref}
+        >
+          <p>Controlling here</p>
+          <p>Color Scheme: {colorScheme}</p>
         </div>
       )}
     </>
