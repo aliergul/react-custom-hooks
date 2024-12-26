@@ -1,8 +1,12 @@
-# React + Vite
+# Custom Hooks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu projede Vite kullanılarak bir React projesi oluşturdum. Daha sonra faydalı olabilecek 3 adet hook oluşturup basit bir şekilde örneklendirdim.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+***use-click-outside***: Görünürlüğü bir buton ile kontrol edilen bir alanın dışında bir yere tıklandığında bir işlem yapan hook.
+
+***use-color-scheme***: Sistemin renk ayarına göre bir değer return eden ve buna göre sayfada bazı değişiklikler yaptığım hook.
+
+***use-focus-within***: Bir input elemanına focus olup olmadığımın bilgisini döndüren bir hook.
+
+***use-full-screen***: Tarayıcıyı tam ekran yapmışım gibi davranan bir hook. Burada verilen referans elemanına göre istenilen etiket tam ekran yapılabilir.
